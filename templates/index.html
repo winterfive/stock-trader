@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Current Portfolio
+{% endblock %}
+
+{% block main %}
+
+    <table>
+        <tr><h3>Current Stock Portfolio</h3></tr>
+        <tr>
+            <th>Stock Name</th>
+            <th>Symbol</th>
+            <th>Shares Owned</th>
+            <th>Current Value ($)</th>
+            <th>Total Value ($)</th>
+        </tr>
+        
+        {% for stock in stocks %}
+        <tr>
+            <td>{{ stock.stockName }}</td>
+            <td>{{ stock.symbol }}</td>
+            <td>{{ stock.numShares }}</td>
+            <td>{{ "{:,.4f}".format(currentPrices[loop.index0]) }}</td>
+            <td>{{ "{:,.2f}".format(currentValues[loop.index0]) }}</td>
+        </tr>
+        {% endfor %}
+        
+        <tr>
+            <th colspan="4">Current Cash</th>
+            <td>${{ "{:,.2f}".format(cash) }}</td>
+        </tr>
+        
+        <tr>
+            <th colspan="4">Total Portfolio Value</th>
+            <td>${{ "{:,.2f}".format(totalValue) }}</td>
+        </tr>
+    </table>
+{% endblock %}
