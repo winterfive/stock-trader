@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sold Stock Info
+{% endblock %}
+
+{% block main %}
+    </br>
+    <div><h3>You have sold <span class="green">{{ numShares }}</span> shares of <span class="green">{{ symbol }} ({{ stockName }})</span> resulting in a return of <span class="green">${{ profit }}</span>.</h3></div>
+{% endblock %}
