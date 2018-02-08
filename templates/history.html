@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Trading History
+{% endblock %}
+{% block main %}
+    <table>
+        <tr><h3>Trading History</h3></tr>
+        <br>
+        <tr><h4>Buys</h4></tr>
+            <tr>
+                <th>Stock Name</th>
+                <th>Symbol</th>
+                <th>Shares Purchased</th>
+                <th>Purchase Date</th>
+                <th>Value of Purchase ($)</th>
+            </tr>
+        
+        {% for buy in buys %}
+            <tr>
+                <td>{{ buy.stockName }}</td>
+                <td>{{ buy.symbol }}</td>
+                <td>{{ buy.sharesPurchased }}</td>
+                <td>{{ buy.purchaseDate }}</td>
+                <td>${{ "{:.2f}".format(buy.valuePurchase|float) }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <table>
+        <br>
+        <tr><h4>Sells</h4></tr>
+            <tr>
+                <th>Stock Name</th>
+                <th>Symbol</th>
+                <th>Shares Sold</th>
+                <th>Date of Sale</th>
+                <th>Value of Sale ($)</th>
+                <th>Profit/Loss ($)</th>
+            </tr>
+        {% for sell in sells %}    
+            <tr>
+                <td>{{ sell.stockName }}</td>
+                <td>{{ sell.symbol }}</td>
+                <td>{{ sell.sharesSold }}</td>
+                <td>{{ sell.soldDate }}</td>
+                <td>${{ "{:.2f}".format(sell.valueSold|float) }}</td>
+                <td>${{ sell.profitLoss }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+
+    
