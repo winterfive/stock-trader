@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Current Portfolio
+{% endblock %}
+{% block main %}
+                <table>
+                    <tr><h3>Current Stock Portfolio</h3></tr>
+                    <tr><h5>For current information, please reload page.</h5></tr>
+                    <tr>
+                        <th>Portfolio ID</th>
+                        <th>Stock Name</th>
+                        <th>Symbol</th>
+                        <th>Shares Owned</th>
+                        <th>Current Share Price ($)</th>
+                        <th>Current Value ($)</th>
+                        <th>Purchase Price ($)</th>
+                        <th>Profit/Loss per Share($)</th>
+                    </tr>
+                    
+                    {% for stock in stocks %}
+                        <tr>
+                            <td>{{ stock.portfolioID }}</td>
+                            <td>{{ stock.stockName }}</td>
+                            <td>{{ stock.symbol }}</td>
+                            <td>{{ stock.numShares }}</td>
+                            <td>{{ currentPrices[loop.index0] }}</td>
+                            <td>{{ currentValues[loop.index0] }}</td>
+                            <td>{{ stock.pricePerShare }}</td>
+                            <td>{{ profits[loop.index0] }}</td>
+                        </tr>
+                    {% endfor %}
+                    
+                    <tr>
+                        <th colspan="6">Current Cash</th>
+                        <td colspan="2">${{ cash }}</td>
+                    </tr>
+                    
+                    <tr>
+                        <th colspan="6">Total Portfolio Value</th>
+                        <td colspan="2">${{ totalValue }}</td>
+                    </tr>
+                </table>
+                </br>
+                
+                <table id="selling">
+                    <tr><h3>Sell Stock</h3></tr>
+                    <tr>
+                        <form action="{{ url_for('sell') }}" method="post">
+                            <fieldset>
+                                <div class="form-group">
+                                    <input autocomplete="off" autofocus class="form-control" name="portfolioSell" placeholder="Portfolio ID #" type="number" required/>
+                                    <input autocomplete="off" autofocus class="form-control" name="symbolSell" placeholder="Stock Symbol" type="text" required/>
+                                    <button class="btn btn-default" type="submit">Sell Stock</button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </tr>
+                </table>
+{% endblock %}
+
+    
