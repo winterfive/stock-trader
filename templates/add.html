@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Increase Funding
+{% endblock %}
+
+{% block main %}
+    <form>
+        <fieldset>
+            <div><h3>Increase Funding</h3></div>
+            <br>
+            <div class="form-group">
+                <input list="amounts" name="moreCash">
+                    <datalist id="amounts">
+                        <option value="100">
+                        <option value="500">
+                        <option value="1000">
+                        <option value="3000">
+                        <option value="5000">
+                    </datalist>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}
